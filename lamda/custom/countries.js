@@ -1,4 +1,4 @@
-// List from dr5hn - github link
+// List from dr5hn - github link {https://github.com/dr5hn/countries-states-cities-database}
 
 module.exports = [
     {
