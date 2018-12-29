@@ -13,6 +13,8 @@ const GetCountryCapital = {
   handle(handlerInput) {
     const factArr = data;
     //const requestxx = handlerInput.requestEnvelope.request.intent.countryName.value;
+    
+    // Wait for the session
     //var picked = data.find(o => o.name === 'Budapest');
     //https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/lambda/custom/index.js
     const factIndex = Math.floor(Math.random() * factArr.length);
