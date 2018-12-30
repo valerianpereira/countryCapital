@@ -12,6 +12,7 @@ const GetCountryCapital = {
   },
   handle(handlerInput) {
     const factArr = data;
+    // Carry the country name
     //const requestxx = handlerInput.requestEnvelope.request.intent.countryName.value;
     
     // Wait for the session
