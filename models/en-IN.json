@@ -29,7 +29,7 @@
                     ],
                     "samples": [
                         "tell me the capital of {countryName}",
-                        "a fact",
+                        "country capital for {countryName}",
                         "tell me something"
                     ]
                 }
