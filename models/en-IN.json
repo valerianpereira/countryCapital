@@ -28,8 +28,9 @@
                         }
                     ],
                     "samples": [
+                        "what is the capital of {countryName}",
+                        "give me the capital of {countryName}",
                         "tell me the capital of {countryName}",
-                        "country capital for {countryName}",
                         "tell me something"
                     ]
                 }
