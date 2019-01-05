@@ -28,45 +28,14 @@
                         }
                     ],
                     "samples": [
+                        "capital of {countryName}",
                         "what is the capital of {countryName}",
                         "give me the capital of {countryName}",
-                        "tell me the capital of {countryName}",
-                        "tell me something"
+                        "tell me the capital of {countryName}"
                     ]
                 }
             ],
             "types": []
-        },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "GetCountryCapital",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "countryName",
-                            "type": "AMAZON.SearchQuery",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.91036183450.1060361511172"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        "prompts": [
-            {
-                "id": "Elicit.Slot.91036183450.1060361511172",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Could you please specify the {countryName} ?"
-                    }
-                ]
-            }
-        ]
+        }
     }
 }
