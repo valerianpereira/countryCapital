@@ -159,14 +159,6 @@
                                     },
                                     {
                                         "type": "Text",
-                                        "text": "<b>Food pairings</b> | <b>Wine pairings</b>",
-                                        "style": "textStylePrimary",
-                                        "color": "#4dd2ff",
-                                        "width": "90vw",
-                                        "textAlign": "center"
-                                    },
-                                    {
-                                        "type": "Text",
                                         "text": "<b>${payload.bodyTemplate3Data.textContent.title.text}</b>",
                                         "style": "textStyleBody",
                                         "width": "90vw",
@@ -174,23 +166,8 @@
                                     },
                                     {
                                         "type": "Text",
-                                        "text": "${payload.bodyTemplate3Data.textContent.subtitle.text}",
-                                        "style": "textStylePrimary",
-                                        "width": "90vw",
-                                        "textAlign": "center"
-                                    },
-                                    {
-                                        "type": "Text",
                                         "text": "${payload.bodyTemplate3Data.textContent.primaryText.text}",
                                         "paddingTop": 40,
-                                        "style": "textStylePrimary",
-                                        "width": "90vw",
-                                        "textAlign": "center"
-                                    },
-                                    {
-                                        "type": "Text",
-                                        "text": "${payload.bodyTemplate3Data.textContent.bulletPoint.text}",
-                                        "paddingTop": 50,
                                         "style": "textStylePrimary",
                                         "width": "90vw",
                                         "textAlign": "center"
@@ -244,30 +221,13 @@
                                         "items": [
                                             {
                                                 "type": "Text",
-                                                "text": "<b>Food pairings</b> | <b>Wine pairings</b>",
-                                                "style": "textStylePrimary",
-                                                "color": "#4dd2ff"
-                                            },
-                                            {
-                                                "type": "Text",
                                                 "text": "<b>${payload.bodyTemplate3Data.textContent.title.text}</b>",
                                                 "style": "textStyleBody"
                                             },
                                             {
                                                 "type": "Text",
-                                                "text": "${payload.bodyTemplate3Data.textContent.subtitle.text}",
-                                                "style": "textStylePrimary"
-                                            },
-                                            {
-                                                "type": "Text",
                                                 "text": "${payload.bodyTemplate3Data.textContent.primaryText.text}",
                                                 "paddingTop": 40,
-                                                "style": "textStylePrimary"
-                                            },
-                                            {
-                                                "type": "Text",
-                                                "text": "${payload.bodyTemplate3Data.textContent.bulletPoint.text}",
-                                                "paddingTop": 50,
                                                 "style": "textStylePrimary"
                                             }
                                         ]
