@@ -1,7 +1,11 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
+/*
+* `launch country capitals and give me the capital of India`
+*/
 
 const Alexa = require('ask-sdk');
+const main = require('./main.json');
 
 const LaunchRequest = {
   canHandle(handlerInput) {
@@ -38,6 +42,14 @@ const GetCountryCapital = {
     return handlerInput.responseBuilder
       .speak(speechOutput)
       .withSimpleCard(SKILL_NAME, randomFact)
+      .addDirective({
+        type: 'Alexa.Presentation.APL.RenderDocument',
+        version: '1.0',
+        document: main,
+        datasources: {
+
+        }
+      })
       .getResponse();
   },
 };
