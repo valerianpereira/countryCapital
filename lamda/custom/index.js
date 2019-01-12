@@ -1,8 +1,5 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
-/*
-* `launch country capitals and give me the capital of India`
-*/
 
 const Alexa = require('ask-sdk');
 const main = require('./main.json');
@@ -27,17 +24,18 @@ const GetCountryCapital = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
     return (request.type === 'IntentRequest'
-        && request.intent.name === 'GetCountryCapital');
+      && request.intent.name === 'GetCountryCapital');
   },
   handle(handlerInput) {
     const requestxx = handlerInput.requestEnvelope.request.intent.slots.countryName.value;
-    
+
     // Get the matched json values
     var picked = data.find(o => o.name.toLowerCase() === requestxx.toLowerCase());
-    
+
     //console.log(JSON.stringify(factArr[2]));
     const randomFact = picked.capital;
-    const speechOutput = GET_FACT_MESSAGE + randomFact;
+    const speechOutput = GET_FACT_MESSAGE + '. The capital of ' + picked.name + ' is ' + randomFact;
+    const flagURI = picked.name.replace(/\s+/g, '-').toLowerCase()
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -47,7 +45,69 @@ const GetCountryCapital = {
         version: '1.0',
         document: main,
         datasources: {
-
+          "bodyTemplate3Data": {
+            "type": "object",
+            "objectId": "bt3Sample",
+            "backgroundImage": {
+              "contentDescription": null,
+              "smallSourceUrl": null,
+              "largeSourceUrl": null,
+              "sources": [
+                {
+                  "url": "https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=840",
+                  "size": "small",
+                  "widthPixels": 0,
+                  "heightPixels": 0
+                },
+                {
+                  "url": "https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=840",
+                  "size": "large",
+                  "widthPixels": 0,
+                  "heightPixels": 0
+                }
+              ]
+            },
+            "title": `Country Capital Info`,
+            "image": {
+              "contentDescription": null,
+              "smallSourceUrl": null,
+              "largeSourceUrl": null,
+              "sources": [
+                {
+                  "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-button-square-500.png`,
+                  "size": "small",
+                  "widthPixels": 0,
+                  "heightPixels": 0
+                },
+                {
+                  "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-button-square-500.png`,
+                  "size": "large",
+                  "widthPixels": 0,
+                  "heightPixels": 0
+                }
+              ]
+            },
+            "textContent": {
+              "title": {
+                "type": "PlainText",
+                "text": `  ${picked.name}`
+              },
+              "subtitle": {
+                "type": "PlainText",
+                "text": "Lorem Ipsum"
+              },
+              "primaryText": {
+                "type": "PlainText",
+                "text": ` Country Name: ${picked.name} <br /> Country Code (ISO 3): ${picked.iso3} <br /> Country Code (ISO 2): ${picked.iso2} <br /> Phone Code : ${picked.phone_code} <br /> Capital : ${picked.capital} <br /> Currency : ${picked.currency} <br />`
+              },
+              "bulletPoint": {
+                "type": "PlainText",
+                "text": "• The cheese is named after the Dutch city of Gouda. "
+              }
+            },
+            "logoUrl": "http://valerianpereira.in/api/country-capitals/icons/alexa-country-108x108.png",
+            "hintText": "Try, \"Alexa, give me the capital of India\""
+          }
         }
       })
       .getResponse();
