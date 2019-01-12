@@ -105,8 +105,8 @@ const GetCountryCapital = {
                 "text": "• The cheese is named after the Dutch city of Gouda. "
               }
             },
-            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png",
-            "hintText": "Try, \"Alexa, search for blue cheese\""
+            "logoUrl": "http://valerianpereira.in/api/country-capitals/icons/alexa-country-108x108.png",
+            "hintText": "Try, \"Alexa, give me the capital of India\""
           }
         }
       })
