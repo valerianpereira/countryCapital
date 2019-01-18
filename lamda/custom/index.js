@@ -11,11 +11,12 @@ const LaunchRequest = {
   handle(handlerInput) {
     const speechOutput = GET_FACT_MESSAGE + '. ' + HELP_MESSAGE;
     const cardInfo = 'Alexa Country Capital'
-    const reprompt = 'As for capital of a country or say exit.';
+    const reprompt = 'Ask for capital of a country or say exit.';
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
       .withSimpleCard(SKILL_NAME, cardInfo)
+      .reprompt(reprompt)
       .getResponse();
   },
 };
@@ -37,9 +38,10 @@ const GetCountryCapital = {
     const speechOutput = GET_FACT_MESSAGE + '. The capital of ' + picked.name + ' is ' + randomFact;
     const flagURI = picked.name.replace(/\s+/g, '-').toLowerCase()
 
-    return handlerInput.responseBuilder
+    if (handlerInput.requestEnvelope.context.System.device.supportedInterfaces['Alexa.Presentation.APL']) {
+      return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard(SKILL_NAME, randomFact)
+      //.withSimpleCard(SKILL_NAME, randomFact)
       .addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
@@ -110,7 +112,14 @@ const GetCountryCapital = {
           }
         }
       })
+      .getResponse(); 
+    } else {
+      return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .withSimpleCard(SKILL_NAME, randomFact)
       .getResponse();
+    }
+    
   },
 };
 
