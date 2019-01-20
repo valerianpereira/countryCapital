@@ -101,10 +101,6 @@ const GetCountryCapital = {
               "primaryText": {
                 "type": "PlainText",
                 "text": ` Country Name: ${picked.name} <br /> Country Code (ISO 3): ${picked.iso3} <br /> Country Code (ISO 2): ${picked.iso2} <br /> Phone Code : ${picked.phone_code} <br /> Capital : ${picked.capital} <br /> Currency : ${picked.currency} <br />`
-              },
-              "bulletPoint": {
-                "type": "PlainText",
-                "text": "• The cheese is named after the Dutch city of Gouda. "
               }
             },
             "logoUrl": "http://valerianpereira.in/api/country-capitals/icons/alexa-country-108x108.png",
@@ -179,7 +175,7 @@ const ErrorHandler = {
 
 const SKILL_NAME = 'Country Capital';
 const GET_FACT_MESSAGE = 'Welcome to Country Capital Information';
-const HELP_MESSAGE = 'You can say ask me the capital of India, or, you can say exit... What can I help you with?';
+const HELP_MESSAGE = 'You can say tell me the capital of India, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
