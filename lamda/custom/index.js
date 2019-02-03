@@ -33,15 +33,13 @@ const GetCountryCapital = {
     // Get the matched json values
     var picked = data.find(o => o.name.toLowerCase() === requestxx.toLowerCase());
 
-    //console.log(JSON.stringify(factArr[2]));
-    const randomFact = picked.capital;
+    const randomFact = `Country Capital is ${picked.capital}`;
     const speechOutput = GET_FACT_MESSAGE + '. The capital of ' + picked.name + ' is ' + randomFact;
     const flagURI = picked.name.replace(/\s+/g, '-').toLowerCase()
 
     if (handlerInput.requestEnvelope.context.System.device.supportedInterfaces['Alexa.Presentation.APL']) {
       return handlerInput.responseBuilder
       .speak(speechOutput)
-      //.withSimpleCard(SKILL_NAME, randomFact)
       .addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
@@ -143,6 +141,7 @@ const ExitHandler = {
   handle(handlerInput) {
     return handlerInput.responseBuilder
       .speak(STOP_MESSAGE)
+      .withSimpleCard(SKILL_NAME, STOP_MESSAGE)
       .getResponse();
   },
 };
@@ -169,6 +168,7 @@ const ErrorHandler = {
     return handlerInput.responseBuilder
       .speak('Sorry, an error occurred.')
       .reprompt('Sorry, an error occurred.')
+      .withSimpleCard(SKILL_NAME, 'Sorry, an error occurred.')
       .getResponse();
   },
 };
