@@ -72,6 +72,7 @@ const GetCountryCapital = {
               "contentDescription": null,
               "smallSourceUrl": null,
               "largeSourceUrl": null,
+              "scale": "best-fit",
               "sources": [
                 {
                   "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-button-square-500.png`,
