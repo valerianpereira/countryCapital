@@ -72,10 +72,15 @@ const GetCountryCapital = {
               "contentDescription": null,
               "smallSourceUrl": null,
               "largeSourceUrl": null,
-              "scale": "best-fit",
               "sources": [
                 {
-                  "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-button-square-500.png`,
+                  "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-round-250.png`,
+                  "size": "x_small",
+                  "widthPixels": 0,
+                  "heightPixels": 0
+                },
+                {
+                  "url": `https://cdn.countryflags.com/thumbs/${flagURI}/flag-round-250.png`,
                   "size": "small",
                   "widthPixels": 0,
                   "heightPixels": 0
@@ -92,10 +97,6 @@ const GetCountryCapital = {
               "title": {
                 "type": "PlainText",
                 "text": `  ${picked.name}`
-              },
-              "subtitle": {
-                "type": "PlainText",
-                "text": "Lorem Ipsum"
               },
               "primaryText": {
                 "type": "PlainText",
