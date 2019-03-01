@@ -110,6 +110,7 @@ const GetCountryCapital = {
       })
       .getResponse(); 
     } else {
+      // Non screen response.
       return handlerInput.responseBuilder
       .speak(speechOutput)
       .withSimpleCard(SKILL_NAME, randomFact)
