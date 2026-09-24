@@ -1,7 +1,7 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
 
-const Alexa = require('ask-sdk');
+const Alexa = require('ask-sdk-core');
 const main = require('./main.json');
 
 const LaunchRequest = {
@@ -28,13 +28,19 @@ const GetCountryCapital = {
       && request.intent.name === 'GetCountryCapital');
   },
   handle(handlerInput) {
-    const requestxx = handlerInput.requestEnvelope.request.intent.slots.countryName.value;
+    const requested = handlerInput.requestEnvelope.request.intent.slots.countryName.value;
+    const picked = findCountry(requested);
 
-    // Get the matched json values
-    var picked = data.find(o => o.name.toLowerCase() === requestxx.toLowerCase());
+    if (!picked) {
+      return handlerInput.responseBuilder
+        .speak(`Sorry, I don't have the capital for ${requested || 'that country'}. ${HELP_REPROMPT}`)
+        .reprompt(HELP_REPROMPT)
+        .withSimpleCard(SKILL_NAME, `No capital found for ${requested || 'that country'}.`)
+        .getResponse();
+    }
 
-    const randomFact = `Country Capital is ${picked.capital}`;
-    const speechOutput = GET_FACT_MESSAGE + '. The capital of ' + picked.name + ' is ' + randomFact;
+    const randomFact = `The capital of ${picked.name} is ${picked.capital}.`;
+    const speechOutput = randomFact;
     const flagURI = picked.name.replace(/\s+/g, '-').toLowerCase()
 
     if (handlerInput.requestEnvelope.context.System.device.supportedInterfaces['Alexa.Presentation.APL']) {
@@ -134,6 +140,20 @@ const HelpHandler = {
   },
 };
 
+const FallbackHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'AMAZON.FallbackIntent';
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(FALLBACK_MESSAGE)
+      .reprompt(HELP_REPROMPT)
+      .getResponse();
+  },
+};
+
 const ExitHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -181,16 +201,18 @@ const GET_FACT_MESSAGE = 'Welcome to Country Capital Information';
 const HELP_MESSAGE = 'You can say tell me the capital of India, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
+const FALLBACK_MESSAGE = 'Sorry, I can only tell you the capitals of countries. ' + HELP_MESSAGE;
 
-const data = require('./countries');
+const findCountry = require('./lookup');
 
-const skillBuilder = Alexa.SkillBuilders.standard();
+const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequest,
     GetCountryCapital,
     HelpHandler,
+    FallbackHandler,
     ExitHandler,
     SessionEndedRequestHandler
   )
