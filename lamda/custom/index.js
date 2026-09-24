@@ -140,6 +140,20 @@ const HelpHandler = {
   },
 };
 
+const FallbackHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'AMAZON.FallbackIntent';
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(FALLBACK_MESSAGE)
+      .reprompt(HELP_REPROMPT)
+      .getResponse();
+  },
+};
+
 const ExitHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -187,6 +201,7 @@ const GET_FACT_MESSAGE = 'Welcome to Country Capital Information';
 const HELP_MESSAGE = 'You can say tell me the capital of India, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
+const FALLBACK_MESSAGE = 'Sorry, I can only tell you the capitals of countries. ' + HELP_MESSAGE;
 
 const findCountry = require('./lookup');
 
@@ -197,6 +212,7 @@ exports.handler = skillBuilder
     LaunchRequest,
     GetCountryCapital,
     HelpHandler,
+    FallbackHandler,
     ExitHandler,
     SessionEndedRequestHandler
   )
